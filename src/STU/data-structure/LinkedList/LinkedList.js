@@ -3,7 +3,7 @@
  * @Author: yanxbm
  * @Date: 2021-04-12 13:43:47
  * @LastEditors: yanxbm
- * @LastEditTime: 2021-04-14 20:07:55
+ * @LastEditTime: 2021-04-15 19:07:36
  * @FilePath: /interview/src/STU/data-structure/LinkedList/LinkedList.js
  */
 import LinkedListNode from './LinkedListNode';
@@ -76,7 +76,7 @@ export default class LinkedList{
         if(index >=0 && index < this.count){
             let current = this.head;
             for(let i = 0; i < index; i++){
-                // 遍历到index节点的上一个节点
+                // 找到索引为index的节点, 从head遍历index次到索引位置。
                 // 沿着指针遍历整个列表直到合适的位置（从0开始直到index-1）
                 current = current.next;
             }
@@ -255,6 +255,24 @@ export default class LinkedList{
         }
         this.tail = current;
         return deletedTail;
+    }
+
+    /**
+     * @description: 是否为空链表
+     * @param {*}
+     * @return {*}
+     */
+    isEmpty(){
+        return this.size() === 0;
+    }
+
+    /**
+     * @description: 链表元素个数
+     * @param {*}
+     * @return {*}
+     */
+    size(){
+        return this.count;
     }
 
     /**
