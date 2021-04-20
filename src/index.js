@@ -3,13 +3,13 @@
  * @Author: yanxbm
  * @Date: 2021-04-13 21:31:01
  * @LastEditors: yanxbm
- * @LastEditTime: 2021-04-16 20:24:21
+ * @LastEditTime: 2021-04-19 14:01:25
  * @FilePath: /interview/src/index.js
  */
 
 import LinkedList from './STU/data-structure/LinkedList/LinkedList';
 // import DoublyLinkedList from './STU/data-structure/DoublyLinkedList/DoublyLinkedList';
-import AddTwoSum from './STU/algorithms/linkedlist/02-add_two_numbers';
+import AddTwoSum from './STU/algorithms/linkedlist/02-addTwoNumbers';
 function display(value){ console.log(value)}
 
 // let list = new LinkedList();
