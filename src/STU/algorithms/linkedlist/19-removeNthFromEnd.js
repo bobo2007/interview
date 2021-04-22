@@ -17,7 +17,9 @@
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd1 = function(head, n) {
+
+// 方法一 快慢指针---不添加头节点  时间复杂度为O(L)L为链表长度，空间复杂度为O(1)
+var removeNthFromEnd = function(head, n) {
     if (head.next === null) return null;
     let count = 1;
     // 慢指针指向头节点
@@ -38,7 +40,7 @@ var removeNthFromEnd1 = function(head, n) {
   
     // 删除目标节点
     ptrBeforeN.next = ptrBeforeN.next.next;
-    return head;
+    return head
 };
 
 function ListNode(value = null, next = null){
@@ -46,7 +48,8 @@ function ListNode(value = null, next = null){
     this.next = next;
 }
 
-var removeNthFromEnd = function(head, n){
+// 方法二  快慢指针--添加头节点   时间复杂度O(L) L为链表长度   空间复杂度为O(1)
+var removeNthFromEnd2 = function(head, n){
     if(!head) return null;
     let dummy = new ListNode(0, head);
     let slow = dummy,
@@ -58,6 +61,27 @@ var removeNthFromEnd = function(head, n){
         count++;
     }
     slow.next = slow.next.next;
+    return dummy.next;
+}
+
+// 方法三  计算链表长度,最容易想到的方法, 现对链表进行一次遍历得到长度，再从头节点开始遍历，遍历到第 len-n 个节点时就是要删除的节点(为与题目保持一致,节点编号从1开始)。
+// 为方便删除操作，要找到删除节点的前驱节点,这样仅需一次指针操作即可完成删除操作，通过添加虚拟头节点可以方便的进行遍历(遍历len-n次，就到达目标节点的前驱节点)
+function getLength(head){
+    let cur = head, length = 0;
+    while(cur){
+        cur = cur.next;
+        length++
+    }
+    return length;
+}
+function removeNthFromEnd3(head, n){
+    let len = getLength(head);
+    let dummy = new ListNode(0, head);
+    let cur = dummy;
+    for(let i=0; i < len - n; i++){
+        cur = cur.next;
+    }
+    cur.next = cur.next.next;
     return dummy.next;
 }
 // @lc code=end
