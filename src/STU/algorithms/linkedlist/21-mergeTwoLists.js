@@ -40,6 +40,8 @@ var mergeTwoLists1 = function(l1, l2) {
 
 // 方法2  迭代实现, 时间复杂度为O(m+n), m,n分别为两个链表的长度，每次循环迭代，l1和l2只有一个元素会被放进合并链表中。因此循环次数不会超过m+n.
 var mergeTwoLists = function(l1, l2){
+    // 如果有一个为空链表，则直接返回另一个链表
+    if(l1 == null || l2 == null) return l1 || l2;
     // 定义一个前哨节点,方便返回合并后的链表  
     let dummy = new ListNode();
     let current = dummy;

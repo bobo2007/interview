@@ -40,9 +40,23 @@ function mergeTwoLists(l1, l2){
 }
 
 
-// 分治合并
+// 分治合并  时间复杂度O(kn x logk)  空间复杂度O(logk)
 var mergeKLists = function(lists){
-    
+    return merge(lists, 0, lists.length - 1);
+}
+function merge(lists, l, r){
+    if(lists == null || lists.length == 0) return null;
+    if(l === r) return lists[l]; // 直到l==r
+    if(l > r) {
+        return null;
+    }
+    let mid = (l + r) >> 1;
+    // 将k个链表分治合并链表
+    return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
 }
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = mergeKLists;
+// @after-stub-for-debug-end
