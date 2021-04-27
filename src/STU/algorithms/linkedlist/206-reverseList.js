@@ -33,10 +33,31 @@ var reverseList0 = function(head) {
     return prevNode;
 };
 
-// 递归实现
-var reverseList = function(head){
-
+// 递归实现  时间复杂度O(n)  空间复杂度O(n)
+var reverseList1 = function(head){
+    if(head == null || head.next == null){
+        return head;
+    }
+    let newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
 };
+
+// 头插入  每遍历到一个节点，让这个新节点来到反转部分的起始位置
+var reverseList = function(head){
+    if(head == null || head.next == null) return head;
+    let dummy = new ListNode(-1, head);
+    let pre = dummy, cur = head;
+    while(cur.next != null){
+        let nextNode = cur.next;
+        cur.next = nextNode.next;
+        nextNode.next = pre.next;
+        pre.next = nextNode;
+    }
+    return dummy.next;
+}
+
 
 // @lc code=end
 
