@@ -35,7 +35,7 @@ var detectCycle = function(head) {
     if(head == null || head.next == null) return null;
     let slow = fast = head;
     while(fast &&fast.next){
-        // 注意先让快慢指针往下走直到相遇
+        // !!注意先让快慢指针往下走直到相遇
         fast = fast.next.next;
         slow = slow.next;
         // 判断是否相遇
