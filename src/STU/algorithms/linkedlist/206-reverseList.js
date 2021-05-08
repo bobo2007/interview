@@ -33,7 +33,7 @@ var reverseList0 = function(head) {
     return prevNode;
 };
 
-// 递归实现  时间复杂度O(n)  空间复杂度O(n)
+// 普通递归实现 从链表的尾端向前开始处理  时间复杂度O(n)  空间复杂度O(n)
 var reverseList1 = function(head){
     if(head == null || head.next == null){
         return head;
@@ -44,8 +44,24 @@ var reverseList1 = function(head){
     return newHead;
 };
 
+// 尾递归  只有递没有归，从前往后处理，处理完直接返回递的结果，效率比上一种好很多.
+// 尾递归，比线性递归多一个参数，这个参数是上一次调用函数得到的结果；
+// 所以，关键点在于，尾递归每次调用都在收集结果，避免了线性递归不收集结果只能依次展开消耗内存的坏处。
+var reverseList = function(head) {
+    return reverseListInt(head, null);
+}
+
+var reverseListInt = function(head, pre) {
+    // 终止条件
+    if(head == null) return pre;
+    let nextNode = head.next;
+    // 翻转
+    head.next = pre;
+    return reverseListInt(nextNode, head); // head即为上次调用的结果
+}
+
 // 头插入  每遍历到一个节点，让这个新节点来到反转部分的起始位置
-var reverseList = function(head){
+var reverseList3 = function(head){
     if(head == null || head.next == null) return head;
     let dummy = new ListNode(-1, head);
     let pre = dummy, cur = head;
