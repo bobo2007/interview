@@ -3,11 +3,11 @@
  * @Author: yanxbm
  * @Date: 2021-05-15 15:48:39
  * @LastEditors: yanxbm
- * @LastEditTime: 2021-05-15 16:44:12
+ * @LastEditTime: 2022-08-02 10:41:26
  */
 
 /*   
-    创建一个Stack类最简单的方式是使用一个数组来储存其元素，使用数组时大部分方法事件复杂度为O(n)，因为需要迭代整个整个数组知道找到
+    创建一个Stack类最简单的方式是使用一个数组来储存其元素，使用数组时大部分方法时间复杂度为O(n)，因为需要迭代整个数组直到找到
  要找的那个元素，最坏情况下需要迭代数组的所有位置，如果数组有更多元素的话，所需时间更长，另外数组是元素的一个有序集合，为保证元素
  排列有序，它会占用更多内存空间。若能直接获取元素，占用较少的内存空间，且保证所有元素按照我们的需要排列，可使用一个js对象来储存所有的栈元素。
 */
@@ -31,8 +31,9 @@ class Stack {
             return undefined;
         }
         this.count--;
-        // 保存最后一个值
+        // 保存最后一个值，以便返回
         let result = this.items[this.count];
+        // 将最后一个值从对象中删除
         delete this.items[this.count];
         return result;
     }
@@ -50,6 +51,7 @@ class Stack {
     // 查看栈顶元素
     peek(){
         if(this.isEmpty()) return undefined;
+        // 返回最后一个值
         return this.items[this.count - 1];
     }
 

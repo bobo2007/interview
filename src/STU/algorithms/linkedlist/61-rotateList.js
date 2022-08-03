@@ -73,3 +73,7 @@ var rotateRight = function(head, k){
 }
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = rotateRight;
+// @after-stub-for-debug-end

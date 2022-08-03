@@ -47,7 +47,7 @@ var reverseList1 = function(head){
 // 尾递归  只有递没有归，从前往后处理，处理完直接返回递的结果，效率比上一种好很多.
 // 尾递归，比线性递归多一个参数，这个参数是上一次调用函数得到的结果；
 // 所以，关键点在于，尾递归每次调用都在收集结果，避免了线性递归不收集结果只能依次展开消耗内存的坏处。
-var reverseList = function(head) {
+var reverseList_tail_recursive = function(head) {
     return reverseListInt(head, null);
 }
 
@@ -60,8 +60,15 @@ var reverseListInt = function(head, pre) {
     return reverseListInt(nextNode, head); // head即为上次调用的结果
 }
 
+class ListNode {
+    constructor(val, next){
+        this.next = next == undefined ? next : null;
+        this.val = val == undefined ? val : null;
+    }
+};
+
 // 头插入  每遍历到一个节点，让这个新节点来到反转部分的起始位置
-var reverseList3 = function(head){
+var reverseList = function(head){
     if(head == null || head.next == null) return head;
     let dummy = new ListNode(-1, head);
     let pre = dummy, cur = head;
@@ -77,3 +84,7 @@ var reverseList3 = function(head){
 
 // @lc code=end
 
+
+// @after-stub-for-debug-begin
+module.exports = reverseList;
+// @after-stub-for-debug-end
