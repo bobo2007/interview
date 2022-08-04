@@ -17,22 +17,22 @@
  * @param {number} k
  * @return {ListNode}
  */
-// 方法1 求得链表长度， 先闭合为环， 然后在倒数第k个节点的前驱节点处断开.  时间复杂度O(n),最坏情况下遍历两边，空间复杂度O(1)
+// 方法1 求得链表长度， 先闭合为环， 然后在倒数第k个节点的前驱节点处断开.  时间复杂度O(n),最坏情况下遍历两遍，空间复杂度O(1)
 var rotateRight1 = function(head, k) {
     if(head == null || head.next == null || k == 0) return head;
     let cur = head;
     let len = 1;  
-    // 计算长度, 遍历完cur指向最后一个节点, 注意len的初始值为1
+    // 首次遍历计算长度, 遍历完cur指向最后一个节点, 注意len的初始值为1,以确保遍历完成后cur为尾结点。
     while(cur.next){
         cur = cur.next;
         len++;
     }
-    // 将链表闭合为环
+    // 将链表闭合为环，重要步骤！！！
     cur.next = head;
     // 找到倒数第k个节点的前驱节点pre
     // 计算cur从当前位置到pre要移动的步数
     let steps = len - k%len;
-    // 找到倒数第k+1个节点,再遍历一遍
+    // 第二次遍历 找到倒数第k+1个节点
     while(steps--){
         cur = cur.next;
     }
@@ -43,7 +43,7 @@ var rotateRight1 = function(head, k) {
     return head;
 };
 
-// 方法2  快慢指针， 快指针走完后，此时慢指针的下一个节点就是新的头节点，慢指针指向的是新的尾结点。最后把快指针下的节点指向原来的头节点即可。
+// 方法2  快慢指针，慢指针比快指针慢2个节点，快指针走完后，此时慢指针指向的是新的尾结点,慢指针的next就是新的头节点。最后把快指针下的节点指向原来的头节点即可。
 var rotateRight = function(head, k){
     if(head == null || head.next == null || k == 0) return head;
     let len = 0,
@@ -66,8 +66,10 @@ var rotateRight = function(head, k){
         fast = fast.next;
         slow = slow.next;
     }
+    // 将尾结指向head形成环
     fast.next = head;
     head = slow.next;
+    // 在尾结点位置将链表截断
     slow.next = null;
     return head;
 }
